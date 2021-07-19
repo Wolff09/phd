@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	
+	<!-- highlight.js -->
+	<link rel="stylesheet" href="highlight.default.css">
+	<script src="highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+	<title>PhD Supplements</title>
+
+	<style type="text/css">
+		header {
+			padding: .75rem;
+		}
+		header .logos a {
+			display: inline-block;
+		}
+		header .logos a:hover {
+			opacity: .7;
+			transform: scale(1.05, 1.05);
+		}
+
+		table.experiments .fas, table.experiments .far {
+			width: 1.25em;
+		}
+		table.experiments .fa-check, .experiments.fa-check {
+			color: #33DD33;
+		}
+		table.experiments .fa-times, .experiments.fa-times {
+			color: #DD3333;
+		}
+		table.experiments .fa-clock, .experiments.fa-clock {
+			color: #EACF33;
+		}
+
+		kbd {
+			text-transform: uppercase;
+			/*background-color: #820954;*/
+			background-color: #e83e8c;
+		}
+
+		.tooltip-inner {
+			/*max-width: 400px;*/
+			max-width: 25rem;
+		}
+		/*.tooltip-inner i {
+			font-weight: 600;
+		}*/
+		span.ref-full::before, span.ref-year::before, .ref-item-id::before {
+			content: "[";
+		}
+		span.ref-full::after, span.ref-year::after, .ref-item-id::after {
+			content: "]";
+		}
+		.ref-item {
+			margin-top: .35rem;
+		}
+		.ref-item-id, .ref-item-id::before, .ref-item-id::after {
+			font-weight: bold;
+		}
+		.ref-item-paper {
+			font-style: italic;
+		}
+	</style>
+	<style type="text/css">
+		body {
+			background: #fdf6e3;
+		}
+		.jumbotron {
+			background: #eee8d5;
+		}
+		footer.bg-light {
+			background-color: #eee8d5 !important;
+		}
+		.btn.btn-primary {
+			background-color: #268bd2;
+			border-color: #268bd2;
+		}
+		.btn.btn-primary:hover {
+			background-color: #d33682;
+			border-color: #d33682;
+		}
+		a {
+			color: #268bd2;
+		}
+		a:hover {
+			color: #d33682;
+		}
+		kbd {
+			background-color: #073642;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="container clearfix">
+			<h1 class="display-4 text-muted text-left mt-3 float-left" style="font-size: 3rem">
+				PhD Thesis & Resources
+			</h1>
+			<h1 class="display-4 text-muted text-right mt-3 float-right logos">
+				<a target="new" href="https://www.tcs.cs.tu-bs.de/index.html">
+					<img src="https://www.tcs.cs.tu-bs.de/images/logo_tcs.png" alt="Institute of Theoretical Computer Science" style="height: .85em; margin-top: -.35em;">
+				</a>
+			</h1>
+		</div>
+	</header>
+
+	<div class="container clearfix">
+		<!-- ********************************************************************************** -->
+		<!-- ************************************** PAPER ************************************* -->
+		<!-- ********************************************************************************** -->
+		<div class="jumbotron">
+			<!-- <img src="artifacts_evaluated_reusable.png" class="ml-4 mr-3" style="max-height: 9rem; float: right;"> -->
+			<h1 class="display-4">
+				Verifying Non-blocking Data Structures with Manual Memory Management
+			</h1>
+			<h2>
+				<small>
+					<a target="new" href="https://www.tcs.cs.tu-bs.de/group/wolff/home.html">Sebastian Wolff</a>,
+					TU Braunschweig, Germany
+				</small>
+			</h2>
+			<h3>
+				<small>
+					Submitted March 3rd 2021.
+				</small>
+			</h3>
+			<p class="lead text-justify mb-2">
+				<strong>Abstract.</strong>
+				Verification of concurrent data structures is one of the most challenging tasks in software verification.
+				The topic has received considerable attention over the course of the last decade.
+				Nevertheless, human-driven techniques remain cumbersome and notoriously difficult while automated approaches suffer from limited applicability.
+				This is particularly true in the absence of garbage collection.
+				The intricacy of non-blocking manual memory management (manual memory reclamation) paired with the complexity of concurrent data structures has so far made automated verification prohibitive.
+				<br>
+				<br>
+				We tackle the challenge of automated verification of non-blocking data structures which manually manage their memory.
+				To that end, we contribute several insights that greatly simplify the verification task.
+				The guiding theme of those simplifications are <em>semantic reductions</em>.
+				We show that the verification of a data structure's complicated target semantics can be conducted in a simpler and smaller semantics which is more amenable to automatic techniques.
+				Some of our reductions rely on <em>good conduct</em> properties of the data structure.
+				The properties we use are derived from practice, for instance, by exploiting common programming patterns.
+				Furthermore, we also show how to automatically check for those properties under the smaller semantics.
+				<br>
+				<br>
+				The main contributions are:
+				(i)
+					A compositional verification approach that verifies the memory management and the data structure separately.
+					The approach crucially relies on a novel specification formalism for memory management implementations that over-approximates the reclamation behavior.
+				(ii)
+					A notion of weak ownership that applies when memory is reclaimed and reused.
+					Weak ownership bridges the gab between techniques for garbage collection, which can assume exclusive access to owned memory, and manual memory management, where dangling pointers break such exclusivity guarantees.
+				(iii)
+					A notion of pointer races and harmful ABAs the absence of which ensures that the memory management does not influence the operations of the data structure, i.e., it behaves as if executed under garbage collection.
+					Notably, we show that a check for pointer races and harmful ABAs only needs to consider executions where at most a single address is reused.
+				(iv)
+					A notion of strong pointer races the absence of which entails the absence of ordinary pointer races and harmful ABAs.
+					We devise a highly-efficient type check for strong pointer races.
+					This results in a light-weight analysis that first type checks a data structure and then performs the actual verification under garbage collection using an off-the-shelf verifier.
+				(v)
+					Experimental evaluations that substantiate the usefulness of the aforementioned contributions.
+					To the best of our knowledge, we are the first to fully automatically verify practical non-blocking data structures with manual memory management.
+			</p>
+			
+			<div class="text-right mt-3">
+				<a target="new" href="wolff2021.pdf" class="btn btn-primary text-right">
+					<i class="far fa-file-pdf"></i> 
+					PDF
+				</a>
+				<!-- <a target="new" href="resources/POPL20MeyerWolff_slides.pdf" class="btn btn-primary text-right">
+					<i class="far fa-file-pdf"></i> 
+					Slides
+				</a> -->
+				<!-- <a target="new" href="https://arxiv.org/abs/1910.11714" class="btn btn-primary text-right">
+					<i class="far fa-file-pdf"></i> 
+					Published Version
+				</a> -->
+				<a target="new"  href="https://doi.org/10.5281/zenodo.4617274" class="btn btn-primary text-right">
+					<i class="fas fa-hdd"></i>
+					Virtual Machine
+				</a>
+			</div>
+
+			<hr class="my-4">
+			<p>
+				Examiners:
+				<a target="new" href="https://www.tcs.cs.tu-bs.de/group/meyer/home.html">Roland Meyer (TU Braunschweig)</a>,
+				<a target="new" href="http://people.mpi-sws.org/~rupak/">Rupak Majumdar (MPI-SWS Kaiserslautern)</a>, and
+				<a target="new" href="https://www.irif.fr/~cenea/">Constantin Enea (IRIF Paris)</a>.
+			</p>
+		</div>
+		<br>
+
+
+		<!-- ********************************************************************************** -->
+		<!-- *********************************** QUICKSTART *********************************** -->
+		<!-- ********************************************************************************** -->
+
+		<!-- Quick Start -->
+		<!-- <div class="alert alert-info container">
+			<strong><i class="fas fa-shipping-fast"></i> Quick Start <i class="fas fa-shipping-fast"></i></strong>
+			<ol class="mt-2 mb-2">
+				<li class="mt-1">
+					Download the Virtual Machine Snapshot (created with <a target="new" href="https://www.virtualbox.org">Virtual Box</a>, credentials in <code>~/Desktop/pw.txt</code>).
+					The artifact is located at <code>~/popl20artifact/</code>.
+					The folder <code>~/popl20artifact/seal/</code> contains an installation of our tool <kbd>seal</kbd>, the back-end verifier, and all examples.
+					<br>
+					<i class="fas fa-link text-secondary"></i> <a href="#installation" class="text-secondary">See Compilation and Installation</a>
+				</li>
+				<li class="mt-1">
+					Fire up the Virtual Machine.
+				</li>
+				<li class="mt-1">
+					Open a Shell and simply execute <code>cd ~/popl20artifact/seal/ && python3 benchmark.py</code> to run all benchmarks.
+					<br>
+					<i class="fas fa-link text-secondary"></i> <a href="#benchmarks" class="text-secondary">See Benchmarking</a>
+				</li>
+				<li class="mt-1">
+					Presto!
+				</li>
+			</ol>
+		</div>
+		<br> -->
+
+
+		<!-- ********************************************************************************** -->
+		<!-- ************************************ OVERVIEW ************************************ -->
+		<!-- ********************************************************************************** -->
+
+		<div class="mt-4">
+			<h1>Tools</h1>
+			<p>
+				The thesis contains evaluations of the following tools: <kbd>tmrexp</kbd> and <kbd>seal</kbd>.
+				There are two versions of <kbd>tmrexp</kbd>, one for free lists (FL) and one for epoch-based reclamation (EBR) <span class="ref-full">Fraser04, McKenneyS98</span> and hazard pointers (HP) <span class="ref-full">Michael02</span>.
+			</p>
+			<p>
+				<kbd>tmrexp</kbd> for FL integrates the ownership reasoning technique from <a target="new" href="wolff2021.pdf#page=71">Chapter 6</a>.
+				The tool appeared first in <span class="ref-full">HazizaHMW16</span>.
+				It is available here: <a target="new" href="https://github.com/Wolff09/TMRexp/releases/tag/PhD21-own1"><code>branch1</code></a> and <a target="new" href="https://github.com/Wolff09/TMRexp/releases/tag/PhD21-own2"><code>branch2</code></a>.
+				The two branches differ in how version counter (age fields) are tracked in the memory abstraction.
+			</p>
+			<p>
+				<kbd>tmrexp</kbd> for EBR and HP integrates the reduction technique from <a target="new" href="wolff2021.pdf#page=81">Chapter 7</a>.
+				The tool appeared first in <span class="ref-full">MeyerW19</span>.
+				It is available here: <a target="new" href="https://github.com/Wolff09/TMRexp/releases/tag/PhD21-ds"><code>branchDS</code></a> and <a target="new" href="https://github.com/Wolff09/TMRexp/releases/tag/PhD21-smr"><code>branchSMR</code></a>.
+				The two branches address verifying data structures and SMR implementations, respectively.
+				More details can be found <a target="new" href="https://wolff09.github.io/TMRexp/">here</a>.
+			</p>
+			<p>
+				<kbd>seal</kbd> implements the technique from <a target="new" href="wolff2021.pdf#page=99">Chapter 8</a>, that is, performs a type inference/check, discharges invariant annotations under GC, and verifies linearizability under GC.
+				The tool first appeared in <span class="ref-full">MeyerW20</span>.
+				As a GC back-end solver we use <a target="new" target="new" href="https://people.mpi-sws.org/~viktor/cave/">CAVE</a> <span class="ref-year">Vafeiadis09, Vafeiadis10a, Vafeiadis10b</span>.
+				Our tool is available <a target="new" href="https://github.com/Wolff09/seal/releases/tag/PhD21">here</a>.
+				More details can be found <a target="new" href="https://wolff09.github.io/seal/">here</a>.
+			</p>
+			<p>
+				Finally, there is a Python script that computes the simulation relation for the HP SMR automaton which supports the transfer of protections, cf. <a target="new" href="wolff2021.pdf#page=169">Figure A.5</a>.
+				The script is available <a target="new" href="https://github.com/Wolff09/phd/blob/master/simulation.py">here</a>.
+			</p>
+		</div>
+		<br>
+
+
+		<!-- ********************************************************************************** -->
+		<!-- *********************************** REFERENCES *********************************** -->
+		<!-- ********************************************************************************** -->
+		<div id="references" class="mt-4">
+			<br>
+			<div class="ref-item" data-ref-full="Fraser 2004", data-ref-year="2004">
+				<span class="ref-item-id">Fraser04</span>
+				<span class="ref-item-author">Keir Fraser. 2004.</span>
+				<span class="ref-item-paper">Practical Lock-Freedom.</span>
+				<span class="ref-item-where">Ph.D. Dissertation. University of Cambridge, UK.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="http://ethos.bl.uk/OrderDetails.do?uin=uk.bl.ethos.599193">http://ethos.bl.uk/OrderDetails.do?uin=uk.bl.ethos.599193</a>
+			</div>
+			<div class="ref-item" data-ref-full="Haziza et al. 2016", data-ref-year="2016">
+				<span class="ref-item-id">HazizaHMW16</span>
+				<span class="ref-item-author">Frédéric Haziza, Lukáš Holík, Roland Meyer, and Sebastian Wolff. 2016</span>
+				<span class="ref-item-paper">Pointer Race Freedom.</span>
+				<span class="ref-item-where">LNCS vol. 9583, VMCAI (2016), 393–412.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="https://doi.org/10.1007/978-3-662-49122-5_19">https://doi.org/10.1007/978-3-662-49122-5_19</a>
+			</div>
+			<div class="ref-item" data-ref-full="McKenney and Slingwine 1998", data-ref-year="1998">
+				<span class="ref-item-id">McKenneyS98</span>
+				<span class="ref-item-author">Paul E. McKenney and John D. Slingwine. 1998.</span>
+				<span class="ref-item-paper">Read-copy Update: Using Execution History to Solve Concurrency Problems.</span>
+				<span class="ref-item-where">In Parallel and Distributed Computing and Systems.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="http://www.rdrop.com/users/paulmck/RCU/rclockjrnl_tpds_mathtype.pdf">http://www.rdrop.com/users/paulmck/RCU/rclockjrnl_tpds_mathtype.pdf</a>
+			</div>
+			<div class="ref-item" data-ref-full="Meyer and Wolff 2019", data-ref-year="2019">
+				<span class="ref-item-id">MeyerW19</span>
+				<span class="ref-item-author">Roland Meyer and Sebastian Wolff. 2019.</span>
+				<span class="ref-item-paper">Decoupling lock-free data structures from memory reclamation for static analysis.</span>
+				<span class="ref-item-where">PACMPL 3, POPL (2019), 58:1–58:31.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="https://doi.org/10.1145/3290371">https://doi.org/10.1145/3290371</a>
+			</div>
+			<div class="ref-item" data-ref-full="Meyer and Wolff 2020", data-ref-year="2020">
+				<span class="ref-item-id">MeyerW20</span>
+				<span class="ref-item-author">Roland Meyer and Sebastian Wolff. 2020.</span>
+				<span class="ref-item-paper">Pointer life cycle types for lock-free data structures with memory reclamation.</span>
+				<span class="ref-item-where">PACMPL 4, POPL (2020), 68:1–68:36.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="https://doi.org/10.1145/3371136">https://doi.org/10.1145/3371136</a>
+			</div>
+			<div class="ref-item" data-ref-full="Michael 2002", data-ref-year="2002">
+				<span class="ref-item-id">Michael02</span>
+				<span class="ref-item-author">Maged M. Michael. 2002.</span>
+				<span class="ref-item-paper">Safe memory reclamation for dynamic lock-free objects using atomic reads and writes.</span>
+				<span class="ref-item-where">In PODC. ACM, 21–30.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="https://doi.org/10.1145/571825.571829">https://doi.org/10.1145/571825.571829</a>
+			</div>
+			<div class="ref-item" data-ref-full="Vafeiadis 2009", data-ref-year="2009">
+				<span class="ref-item-id">Vafeiadis09</span>
+				<span class="ref-item-author">Viktor Vafeiadis. 2009.</span>
+				<span class="ref-item-paper">Shape-Value Abstraction for Verifying Linearizability.</span>
+				<span class="ref-item-where">In VMCAI (LNCS), Vol. 5403. Springer, 335–348.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="https://doi.org/10.1007/978-3-540-93900-9_27">https://doi.org/10.1007/978- 3- 540- 93900- 9_27</a>
+			</div>
+			<div class="ref-item" data-ref-full="Vafeiadis 2010a", data-ref-year="2010a">
+				<span class="ref-item-id">Vafeiadis10a</span>
+				<span class="ref-item-author">Viktor Vafeiadis. 2010.</span>
+				<span class="ref-item-paper">Automatically Proving Linearizability.</span>
+				<span class="ref-item-where">In CAV (LNCS), Vol. 6174. Springer, 450–464.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="https://doi.org/10.1007/978-3-642-14295-6_40">https://doi.org/10.1007/978-3-642-14295-6_40</a>
+			</div>
+			<div class="ref-item" data-ref-full="Vafeiadis 2010b", data-ref-year="2010b">
+				<span class="ref-item-id">Vafeiadis10b</span>
+				<span class="ref-item-author">Viktor Vafeiadis. 2010.</span>
+				<span class="ref-item-paper">RGSep Action Inference.</span>
+				<span class="ref-item-where">In VMCAI (LNCS), Vol. 5944. Springer, 345–361.</span>
+				<a target="new" class="ref-item-url text-nowrap" href="https://doi.org/10.1007/978-3-642-11319-2_25">https://doi.org/10.1007/978-3-642-11319-2_25</a>
+			</div>
+		</div>
+
+		<br><br><br>
+	</div>
+
+	<footer class="footer bg-light p-3">
+		<div class="container text-right">
+			<small class="text-muted">Made with <a target="new" href="https://getbootstrap.com" class="text-dark">Bootstrap</a> and <a target="new" href="https://html9responsiveboilerstrapjs.com" class="text-dark">H9RBS.js</a>. Hosted by <a target="new" href="https://pages.github.com" class="text-dark">GitHub Pages</a>.</small>
+		</div>
+	</footer>
+
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		var CITATION_MAP = { };
+		function mk_link(authors, paper, where, url, linktext) {
+			return '<a class="citation" target="new" data-toggle="tooltip" ' + 'title="' + authors + ' <i>' + paper + '</i> ' + where + '" href="' + url + '">' + linktext + '</a>';
+		}
+		$(".ref-item").each(function(){
+			const ref_id = $(this).find(".ref-item-id").text();
+			const ref_names = $(this).attr("data-ref-full");
+			const ref_year = $(this).attr("data-ref-year");
+			const ref_author = $(this).find(".ref-item-author").text();
+			const ref_paper = $(this).find(".ref-item-paper").text();
+			const ref_where = $(this).find(".ref-item-where").text();
+			const ref_url = $(this).find(".ref-item-url").text();
+			CITATION_MAP[ref_id] = [
+				mk_link(ref_author, ref_paper, ref_where, ref_url, ref_names),
+				mk_link(ref_author, ref_paper, ref_where, ref_url, ref_year),
+			];
+		});
+
+		var all_found = true;
+		$("span.ref-full, span.ref-year").each(function(){
+			const ref_keys = $(this).text().split(",");
+			const full = $(this).hasClass("ref-full") ? true : false;
+			var citation = "";
+			var first = true;
+			for (index = 0, len = ref_keys.length; index < len; ++index) {
+				const key = ref_keys[index].trim();
+				var link;
+				if (key in CITATION_MAP) {
+					link = CITATION_MAP[key][full ? 0 : 1];
+				} else {
+					link = key;
+					all_found = false;
+				}
+				if (!first) {
+					citation += ", ";
+				}
+				first = false;
+				citation += link;
+			}
+			$(this).html(citation);
+		});
+		if (all_found) {
+			$("#references").addClass("d-none");
+		}
+	</script>
+	<script type="text/javascript">
+		$('[data-toggle="tooltip"]').tooltip({ 'html': true });
+	</script>
+</body>
+</html>
